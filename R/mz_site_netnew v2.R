@@ -55,7 +55,7 @@ gen_site_im <- read_rds(file.path(site_path, "PEPFAR-Data-Genie-SiteByIMs-2018-0
   combine_netnew() %>% 
   ICPIutilities::add_cumulative() %>% 
   select(c(keep)) %>% 
-  gather("codes", "value", 7:11) %>% 
+  gather(codes, value, starts_with("fy")) %>% 
   drop_na(value) %>% 
   group_by(countryname, snu1, psnu, mechanismid, facility, indicator, codes) %>% 
   summarise(value = sum(value)) %>% 
